@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7faff" />
+  <title>Pressure OS</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <div>
+    <p class="eyebrow">Mental Bandwidth Dashboard</p>
+    <h1>Pressure OS</h1>
+  </div>
+  <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">◐</button>
+</header>
+
+<main>
+<section id="dashboard" class="view active">
+  <p class="eyebrow">Today · <span id="todayDate"></span></p>
+  <section class="hero-card">
+    <h2 id="greeting">Good morning, Rob.</h2>
+    <p class="muted">What is currently exerting pressure on your life?</p>
+    <div class="pressure-total"><strong id="activeCount">0</strong><span>Current load</span></div>
+    <div class="summary-list" id="typeCards"></div>
+  </section>
+  <section class="panel">
+    <div class="panel-head"><h3>7-Day Pressure Changes</h3><span id="trendLabel" class="mini-badge">Building signal</span></div>
+    <div id="weekBars" class="trend"></div>
+  </section>
+  <section class="panel">
+    <div class="panel-head"><h3>Recent changes</h3></div>
+    <div id="recentEntries" class="entry-list"></div>
+  </section>
+</section>
+
+<section id="financial" class="view domain-view" data-type="financial">
+  <div class="domain-title"><span>Money</span><h2>Financial</h2></div>
+  <div class="date-pill"><button type="button">‹</button><span>Today</span><button type="button">›</button></div>
+  <section class="card metric-card accent"><div><div class="metric-label">Current</div><div class="metric-value" id="financialMetric">0 active</div><p class="muted small" id="financialSub">Not logged</p></div><div class="ring"><span id="financialScore">0</span><small>active</small></div></section>
+  <form class="quick-form pressure-form" data-type="financial">
+    <input name="pressure" placeholder="Pressure: Cash flow, debt, payment deadline, unexpected expense..." required />
+    <textarea name="why" placeholder="Why it matters..."></textarea>
+    <textarea name="doing" placeholder="What I'm doing / boundary / next step..."></textarea>
+    <div class="form-row two"><select name="owner"></select><select name="status"></select></div>
+    <button class="primary-btn" type="submit">Save Financial</button>
+  </form>
+  <h3>Quick Add</h3><div class="chips" data-target="financial"></div>
+  <h3>Financial Pressures</h3><div class="domain-entries"></div>
+</section>
+
+<section id="health" class="view domain-view" data-type="health">
+  <div class="domain-title"><span>Wellbeing</span><h2>Health</h2></div>
+  <div class="date-pill"><button type="button">‹</button><span>Today</span><button type="button">›</button></div>
+  <section class="card metric-card accent"><div><div class="metric-label">Current</div><div class="metric-value" id="healthMetric">0 active</div><p class="muted small" id="healthSub">Not logged</p></div><div class="ring"><span id="healthScore">0</span><small>active</small></div></section>
+  <form class="quick-form pressure-form" data-type="health">
+    <input name="pressure" placeholder="Pressure: Sleep, fertility, injury, dad health, Marlo..." required />
+    <textarea name="why" placeholder="Why it matters..."></textarea>
+    <textarea name="doing" placeholder="What I'm doing / boundary / next step..."></textarea>
+    <div class="form-row two"><select name="owner"></select><select name="status"></select></div>
+    <button class="primary-btn" type="submit">Save Health</button>
+  </form>
+  <h3>Quick Add</h3><div class="chips" data-target="health"></div>
+  <h3>Health Pressures</h3><div class="domain-entries"></div>
+</section>
+
+<section id="relationships" class="view domain-view" data-type="relationships">
+  <div class="domain-title"><span>People</span><h2>Relationships</h2></div>
+  <div class="date-pill"><button type="button">‹</button><span>Today</span><button type="button">›</button></div>
+  <section class="card metric-card accent"><div><div class="metric-label">Current</div><div class="metric-value" id="relationshipsMetric">0 active</div><p class="muted small" id="relationshipsSub">Not logged</p></div><div class="ring"><span id="relationshipsScore">0</span><small>active</small></div></section>
+  <form class="quick-form pressure-form" data-type="relationships">
+    <input name="pressure" placeholder="Pressure: Katz, Dryden, dad, family tension, communication..." required />
+    <textarea name="why" placeholder="Why it matters..."></textarea>
+    <textarea name="doing" placeholder="What I'm doing / boundary / next step..."></textarea>
+    <div class="form-row two"><select name="owner"></select><select name="status"></select></div>
+    <button class="primary-btn" type="submit">Save Relationship</button>
+  </form>
+  <h3>Quick Add</h3><div class="chips" data-target="relationships"></div>
+  <h3>Relationship Pressures</h3><div class="domain-entries"></div>
+</section>
+
+<section id="responsibilities" class="view domain-view" data-type="responsibilities">
+  <div class="domain-title"><span>Load</span><h2>Responsibilities</h2></div>
+  <div class="date-pill"><button type="button">‹</button><span>Today</span><button type="button">›</button></div>
+  <section class="card metric-card accent"><div><div class="metric-label">Current</div><div class="metric-value" id="responsibilitiesMetric">0 active</div><p class="muted small" id="responsibilitiesSub">Not logged</p></div><div class="ring"><span id="responsibilitiesScore">0</span><small>active</small></div></section>
+  <form class="quick-form pressure-form" data-type="responsibilities">
+    <input name="pressure" placeholder="Pressure: Work, HOA, commercialization, house, legal, logistics..." required />
+    <textarea name="why" placeholder="Why it matters..."></textarea>
+    <textarea name="doing" placeholder="What I'm doing / boundary / next step..."></textarea>
+    <div class="form-row two"><select name="owner"></select><select name="status"></select></div>
+    <button class="primary-btn" type="submit">Save Responsibility</button>
+  </form>
+  <h3>Quick Add</h3><div class="chips" data-target="responsibilities"></div>
+  <h3>Responsibility Pressures</h3><div class="domain-entries"></div>
+</section>
+
+<section id="settings" class="view">
+  <div class="domain-title"><span style="color:var(--blue)">Control</span><h2>More</h2></div>
+  <section class="panel"><h3>Data</h3><div class="settings-actions"><button id="exportBtn">Export JSON</button><label class="file-btn">Import JSON<input id="importFile" type="file" accept="application/json" hidden /></label><button id="clearBtn" class="danger">Clear All</button></div><p class="muted small">All pressures are stored locally on this device.</p></section>
+  <section class="panel"><h3>Product frame</h3><p class="muted">Pressure OS tracks current load through four domains: Financial, Health, Relationships, and Responsibilities.</p></section>
+</section>
+</main>
+
+<nav class="bottom-nav" aria-label="Primary navigation">
+  <button class="nav-btn active" data-view="dashboard">⌂<span>Home</span></button>
+  <button class="nav-btn" data-view="financial">$<span>Money</span></button>
+  <button class="nav-btn" data-view="health">✚<span>Health</span></button>
+  <button class="nav-btn" data-view="relationships">♡<span>People</span></button>
+  <button class="nav-btn" data-view="responsibilities">▣<span>Load</span></button>
+  <button class="nav-btn" data-view="settings">☰<span>More</span></button>
+</nav>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
